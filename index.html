@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MÍRAME PANAMÁ - Formulario de Registro</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="form-wrapper">
+            <!-- Logo Section -->
+            <div class="logo-section">
+                <img src="MIRAMEPANAMA.jpg" alt="MÍRAME PANAMÁ Logo" class="main-logo">
+                <p class="slogan">"Promover el desarrollo del reciclaje en Panamá. 🇵🇦🌟"</p>
+                <div class="instagram-link">
+                    <i class="fab fa-instagram"></i>
+                    <a href="https://instagram.com/mirame_panama" target="_blank">@mirame_panama</a>
+                </div>
+                <p class="subtitle">Formulario de Registro</p>
+            </div>
+
+            <!-- Form Section -->
+            <form id="registrationForm" class="registration-form">
+                <div class="form-group">
+                    <label for="nombre" class="form-label">
+                        <i class="fas fa-user"></i>
+                        Nombre Completo *
+                    </label>
+                    <input type="text" id="nombre" name="nombre" class="form-input" required>
+                    <span class="error-message" id="nombre-error"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="direccion" class="form-label">
+                        <i class="fas fa-map-marker-alt"></i>
+                        Dirección *
+                    </label>
+                    <textarea id="direccion" name="direccion" class="form-input" rows="3" required></textarea>
+                    <span class="error-message" id="direccion-error"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="correo" class="form-label">
+                        <i class="fas fa-envelope"></i>
+                        Correo Electrónico *
+                    </label>
+                    <input type="email" id="correo" name="correo" class="form-input" required>
+                    <span class="error-message" id="correo-error"></span>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="fechaNacimiento" class="form-label">
+                            <i class="fas fa-calendar-alt"></i>
+                            Fecha de Nacimiento *
+                        </label>
+                        <input type="date" id="fechaNacimiento" name="fechaNacimiento" class="form-input" required>
+                        <span class="error-message" id="fechaNacimiento-error"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cedula" class="form-label">
+                            <i class="fas fa-id-card"></i>
+                            Cédula *
+                        </label>
+                        <input type="text" id="cedula" name="cedula" class="form-input" required>
+                        <span class="error-message" id="cedula-error"></span>
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-btn" id="submitBtn">
+                    <i class="fas fa-paper-plane"></i>
+                    Enviar Registro
+                </button>
+
+                <div class="success-message" id="successMessage" style="display: none;">
+                    <i class="fas fa-check-circle"></i>
+                    ¡Registro enviado exitosamente!
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
