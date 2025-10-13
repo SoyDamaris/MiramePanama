@@ -1,5 +1,5 @@
 // Configuración de Google Sheets
-const GOOGLE_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbw7ifaSMWndDOD3o2xMyD9OGaojyCJoihe-WjC9kkz5yKH87R9ymxDaSCohoKYhglR0Tg/exec';
+const GOOGLE_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbyxOQCANrTh3lhuuIfkjl075GROoRe7A-9axWuJVWZ_0w07a1ycTjl4qzAD90BYl8jdTA/exec';
 
 // Esperar a que el DOM esté cargado
 document.addEventListener('DOMContentLoaded', function() {
