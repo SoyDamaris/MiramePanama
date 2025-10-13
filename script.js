@@ -8,23 +8,17 @@ const successMessage = document.getElementById('successMessage');
 
 // Validaciones
 const validations = {
-    nombre: {
+    cidParticipante: {
+        required: true,
+        pattern: /^[0-9]-[0-9]{4}-[0-9]{4}$/,
+        errorMessage: 'El CID debe tener el formato X-XXXX-XXXX (ej: 1-2345-6789)'
+    },
+    nombreCompleto: {
         required: true,
         minLength: 2,
         maxLength: 100,
         pattern: /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/,
         errorMessage: 'El nombre debe contener solo letras y tener entre 2 y 100 caracteres'
-    },
-    direccion: {
-        required: true,
-        minLength: 10,
-        maxLength: 200,
-        errorMessage: 'La dirección debe tener entre 10 y 200 caracteres'
-    },
-    correo: {
-        required: true,
-        pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-        errorMessage: 'Ingresa un correo electrónico válido'
     },
     fechaNacimiento: {
         required: true,
@@ -36,10 +30,33 @@ const validations = {
         },
         errorMessage: 'Ingresa una fecha de nacimiento válida'
     },
-    cedula: {
+    provincia: {
         required: true,
-        pattern: /^[0-9]{6,15}$/,
-        errorMessage: 'La cédula debe contener solo números y tener entre 6 y 15 dígitos'
+        errorMessage: 'Debes seleccionar una provincia'
+    },
+    distrito: {
+        required: true,
+        minLength: 2,
+        maxLength: 50,
+        pattern: /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/,
+        errorMessage: 'El distrito debe contener solo letras y tener entre 2 y 50 caracteres'
+    },
+    corregimiento: {
+        required: true,
+        minLength: 2,
+        maxLength: 50,
+        pattern: /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/,
+        errorMessage: 'El corregimiento debe contener solo letras y tener entre 2 y 50 caracteres'
+    },
+    celular: {
+        required: true,
+        pattern: /^[0-9]{4}-[0-9]{4}$/,
+        errorMessage: 'El celular debe tener el formato 6000-0000'
+    },
+    email: {
+        required: true,
+        pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+        errorMessage: 'Ingresa un correo electrónico válido'
     }
 };
 
@@ -301,14 +318,64 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// Función para formatear cédula mientras se escribe
-document.getElementById('cedula').addEventListener('input', (e) => {
-    // Solo permitir números
-    e.target.value = e.target.value.replace(/[^0-9]/g, '');
+// Función para formatear CID mientras se escribe
+document.getElementById('cidParticipante').addEventListener('input', (e) => {
+    let value = e.target.value.replace(/[^0-9]/g, '');
+    
+    // Formatear como X-XXXX-XXXX
+    if (value.length > 0) {
+        if (value.length <= 1) {
+            value = value;
+        } else if (value.length <= 5) {
+            value = value.slice(0, 1) + '-' + value.slice(1);
+        } else {
+            value = value.slice(0, 1) + '-' + value.slice(1, 5) + '-' + value.slice(5, 9);
+        }
+    }
+    
+    e.target.value = value;
+});
+
+// Función para formatear celular mientras se escribe
+document.getElementById('celular').addEventListener('input', (e) => {
+    let value = e.target.value.replace(/[^0-9]/g, '');
+    
+    // Formatear como 6000-0000
+    if (value.length > 4) {
+        value = value.slice(0, 4) + '-' + value.slice(4, 8);
+    }
+    
+    e.target.value = value;
 });
 
 // Función para formatear nombre mientras se escribe
-document.getElementById('nombre').addEventListener('input', (e) => {
+document.getElementById('nombreCompleto').addEventListener('input', (e) => {
+    // Capitalizar primera letra de cada palabra
+    const words = e.target.value.split(' ');
+    const capitalizedWords = words.map(word => {
+        if (word.length > 0) {
+            return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+        }
+        return word;
+    });
+    e.target.value = capitalizedWords.join(' ');
+});
+
+// Función para formatear distrito mientras se escribe
+document.getElementById('distrito').addEventListener('input', (e) => {
+    // Capitalizar primera letra de cada palabra
+    const words = e.target.value.split(' ');
+    const capitalizedWords = words.map(word => {
+        if (word.length > 0) {
+            return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+        }
+        return word;
+    });
+    e.target.value = capitalizedWords.join(' ');
+});
+
+// Función para formatear corregimiento mientras se escribe
+document.getElementById('corregimiento').addEventListener('input', (e) => {
     // Capitalizar primera letra de cada palabra
     const words = e.target.value.split(' ');
     const capitalizedWords = words.map(word => {

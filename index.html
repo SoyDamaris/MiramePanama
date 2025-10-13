@@ -25,49 +25,93 @@
             <!-- Form Section -->
             <form id="registrationForm" class="registration-form">
                 <div class="form-group">
-                    <label for="nombre" class="form-label">
+                    <label for="cidParticipante" class="form-label">
+                        <i class="fas fa-id-card"></i>
+                        CID-Participante (FORMATO X-Xxxx-xxxx) *
+                    </label>
+                    <input type="text" id="cidParticipante" name="cidParticipante" class="form-input" placeholder="Ej: 1-2345-6789" required>
+                    <span class="error-message" id="cidParticipante-error"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="nombreCompleto" class="form-label">
                         <i class="fas fa-user"></i>
                         Nombre Completo *
                     </label>
-                    <input type="text" id="nombre" name="nombre" class="form-input" required>
-                    <span class="error-message" id="nombre-error"></span>
+                    <input type="text" id="nombreCompleto" name="nombreCompleto" class="form-input" required>
+                    <span class="error-message" id="nombreCompleto-error"></span>
                 </div>
 
                 <div class="form-group">
-                    <label for="direccion" class="form-label">
-                        <i class="fas fa-map-marker-alt"></i>
-                        Dirección *
+                    <label for="fechaNacimiento" class="form-label">
+                        <i class="fas fa-calendar-alt"></i>
+                        Fecha de Nacimiento (Año/Mes/Día) *
                     </label>
-                    <textarea id="direccion" name="direccion" class="form-input" rows="3" required></textarea>
-                    <span class="error-message" id="direccion-error"></span>
-                </div>
-
-                <div class="form-group">
-                    <label for="correo" class="form-label">
-                        <i class="fas fa-envelope"></i>
-                        Correo Electrónico *
-                    </label>
-                    <input type="email" id="correo" name="correo" class="form-input" required>
-                    <span class="error-message" id="correo-error"></span>
+                    <input type="date" id="fechaNacimiento" name="fechaNacimiento" class="form-input" required>
+                    <span class="error-message" id="fechaNacimiento-error"></span>
                 </div>
 
                 <div class="form-row">
                     <div class="form-group">
-                        <label for="fechaNacimiento" class="form-label">
-                            <i class="fas fa-calendar-alt"></i>
-                            Fecha de Nacimiento *
+                        <label for="provincia" class="form-label">
+                            <i class="fas fa-map-marker-alt"></i>
+                            Provincia *
                         </label>
-                        <input type="date" id="fechaNacimiento" name="fechaNacimiento" class="form-input" required>
-                        <span class="error-message" id="fechaNacimiento-error"></span>
+                        <select id="provincia" name="provincia" class="form-input" required>
+                            <option value="">Selecciona una provincia</option>
+                            <option value="Bocas del Toro">Bocas del Toro</option>
+                            <option value="Coclé">Coclé</option>
+                            <option value="Colón">Colón</option>
+                            <option value="Chiriquí">Chiriquí</option>
+                            <option value="Darién">Darién</option>
+                            <option value="Herrera">Herrera</option>
+                            <option value="Los Santos">Los Santos</option>
+                            <option value="Panamá">Panamá</option>
+                            <option value="Panamá Oeste">Panamá Oeste</option>
+                            <option value="Veraguas">Veraguas</option>
+                            <option value="Guna Yala">Guna Yala</option>
+                            <option value="Emberá-Wounaan">Emberá-Wounaan</option>
+                            <option value="Ngäbe-Buglé">Ngäbe-Buglé</option>
+                        </select>
+                        <span class="error-message" id="provincia-error"></span>
                     </div>
 
                     <div class="form-group">
-                        <label for="cedula" class="form-label">
-                            <i class="fas fa-id-card"></i>
-                            Cédula *
+                        <label for="distrito" class="form-label">
+                            <i class="fas fa-map-marker-alt"></i>
+                            Distrito *
                         </label>
-                        <input type="text" id="cedula" name="cedula" class="form-input" required>
-                        <span class="error-message" id="cedula-error"></span>
+                        <input type="text" id="distrito" name="distrito" class="form-input" required>
+                        <span class="error-message" id="distrito-error"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="corregimiento" class="form-label">
+                        <i class="fas fa-map-marker-alt"></i>
+                        Corregimiento *
+                    </label>
+                    <input type="text" id="corregimiento" name="corregimiento" class="form-input" required>
+                    <span class="error-message" id="corregimiento-error"></span>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="celular" class="form-label">
+                            <i class="fas fa-phone"></i>
+                            Celular (6000-0000) *
+                        </label>
+                        <input type="tel" id="celular" name="celular" class="form-input" placeholder="Ej: 6000-0000" required>
+                        <span class="error-message" id="celular-error"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email" class="form-label">
+                            <i class="fas fa-envelope"></i>
+                            Email *
+                        </label>
+                        <input type="email" id="email" name="email" class="form-input" required>
+                        <span class="error-message" id="email-error"></span>
                     </div>
                 </div>
 

@@ -9,7 +9,7 @@ function doPost(e) {
     const data = JSON.parse(e.postData.contents);
     
     // Validar que los datos requeridos estén presentes
-    const requiredFields = ['nombre', 'direccion', 'correo', 'fechaNacimiento', 'cedula'];
+    const requiredFields = ['cidParticipante', 'nombreCompleto', 'fechaNacimiento', 'provincia', 'distrito', 'corregimiento', 'celular', 'email'];
     const missingFields = requiredFields.filter(field => !data[field] || data[field].trim() === '');
     
     if (missingFields.length > 0) {
@@ -27,11 +27,14 @@ function doPost(e) {
     // Si es la primera vez, agregar encabezados
     if (sheet.getLastRow() === 0) {
       const headers = [
+        'CID-Participante',
         'Nombre Completo',
-        'Dirección', 
-        'Correo Electrónico',
         'Fecha de Nacimiento',
-        'Cédula',
+        'Provincia',
+        'Distrito',
+        'Corregimiento',
+        'Celular',
+        'Email',
         'Fecha y Hora de Registro',
         'IP Address',
         'User Agent'
@@ -52,11 +55,14 @@ function doPost(e) {
     const userAgent = e.parameter?.userAgent || 'N/A';
     
     const rowData = [
-      data.nombre,
-      data.direccion,
-      data.correo,
+      data.cidParticipante,
+      data.nombreCompleto,
       data.fechaNacimiento,
-      data.cedula,
+      data.provincia,
+      data.distrito,
+      data.corregimiento,
+      data.celular,
+      data.email,
       timestamp,
       userIP,
       userAgent
@@ -123,11 +129,14 @@ function createBackup(data, timestamp) {
       
       // Agregar encabezados
       const headers = [
+        'CID-Participante',
         'Nombre Completo',
-        'Dirección', 
-        'Correo Electrónico',
         'Fecha de Nacimiento',
-        'Cédula',
+        'Provincia',
+        'Distrito',
+        'Corregimiento',
+        'Celular',
+        'Email',
         'Timestamp Original',
         'Timestamp Backup'
       ];
@@ -142,11 +151,14 @@ function createBackup(data, timestamp) {
     
     // Agregar datos de backup
     const backupData = [
-      data.nombre,
-      data.direccion,
-      data.correo,
+      data.cidParticipante,
+      data.nombreCompleto,
       data.fechaNacimiento,
-      data.cedula,
+      data.provincia,
+      data.distrito,
+      data.corregimiento,
+      data.celular,
+      data.email,
       timestamp,
       new Date()
     ];
