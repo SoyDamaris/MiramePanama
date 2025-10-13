@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # MÍRAME PANAMÁ - Formulario de Registro
 
 Un formulario web juvenil y elegante para el registro de usuarios con integración automática a Google Sheets.
@@ -147,3 +148,6 @@ Para soporte técnico o personalizaciones adicionales, contacta al equipo de des
 ---
 
 **MÍRAME PANAMÁ** - Formulario de Registro Web
+=======
+# MiramePanama
+>>>>>>> b6692a517745954d28400f32430b013753834012
