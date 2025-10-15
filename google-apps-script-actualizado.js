@@ -28,7 +28,7 @@ function doPost(e) {
     // Si es la primera vez, agregar encabezados
     if (sheet.getLastRow() === 0) {
       const headers = [
-        'CID-Participante',
+        'C.I.-Participante',
         'Primer Nombre',
         'Primer Apellido',
         'Fecha de Nacimiento',
@@ -132,7 +132,7 @@ function createBackup(data, timestamp) {
       
       // Agregar encabezados
       const headers = [
-        'CID-Participante',
+        'C.I.-Participante',
         'Primer Nombre',
         'Primer Apellido',
         'Fecha de Nacimiento',

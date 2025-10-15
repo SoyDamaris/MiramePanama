@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 const digits = value.replace(/[^0-9]/g, '');
                 return digits.length >= 7 && digits.length <= 9;
             },
-            errorMessage: 'El CID debe tener entre 7 y 9 dígitos'
+            errorMessage: 'La C.I. debe tener entre 7 y 9 dígitos'
         },
         primerNombre: {
             required: true,
