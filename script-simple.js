@@ -20,8 +20,12 @@ document.addEventListener('DOMContentLoaded', function() {
     const validations = {
         cidParticipante: {
             required: true,
-            pattern: /^[0-9]-[0-9]{4}-[0-9]{3}$/,
-            errorMessage: 'El CID debe tener el formato X-XXXX-XXX (ej: 1-2345-678)'
+            validate: (value) => {
+                // Permitir entre 7-9 dígitos (sin contar guiones)
+                const digits = value.replace(/[^0-9]/g, '');
+                return digits.length >= 7 && digits.length <= 9;
+            },
+            errorMessage: 'El CID debe tener entre 7 y 9 dígitos'
         },
         primerNombre: {
             required: true,
@@ -263,13 +267,16 @@ document.addEventListener('DOMContentLoaded', function() {
         cidInput.addEventListener('input', (e) => {
             let value = e.target.value.replace(/[^0-9]/g, '');
             
-            if (value.length > 0) {
-                if (value.length <= 1) {
-                    value = value;
-                } else if (value.length <= 5) {
+            // Formatear automáticamente solo si tiene más de 1 dígito
+            if (value.length > 1) {
+                if (value.length <= 5) {
                     value = value.slice(0, 1) + '-' + value.slice(1);
+                } else if (value.length <= 8) {
+                    // Para 6-8 dígitos: X-XXXX-XXX
+                    value = value.slice(0, 1) + '-' + value.slice(1, 5) + '-' + value.slice(5);
                 } else {
-                    value = value.slice(0, 1) + '-' + value.slice(1, 5) + '-' + value.slice(5, 8);
+                    // Para 9 dígitos: X-XXXX-XXXX
+                    value = value.slice(0, 1) + '-' + value.slice(1, 5) + '-' + value.slice(5, 9);
                 }
             }
             
