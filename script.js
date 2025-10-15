@@ -1,5 +1,5 @@
 // Configuración de Google Sheets
-const GOOGLE_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbyxOQCANrTh3lhuuIfkjl075GROoRe7A-9axWuJVWZ_0w07a1ycTjl4qzAD90BYl8jdTA/exec';
+const GOOGLE_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbymrWa2qsJcZ3wP3Uura1OKmSF6uNXorAZJShXV6HE_wq31p-U7E_RPueGaE2SVc4EeTw/exec';
 
 // Elementos del DOM
 const form = document.getElementById('registrationForm');
@@ -10,15 +10,22 @@ const successMessage = document.getElementById('successMessage');
 const validations = {
     cidParticipante: {
         required: true,
-        pattern: /^[0-9]-[0-9]{4}-[0-9]{4}$/,
-        errorMessage: 'El CID debe tener el formato X-XXXX-XXXX (ej: 1-2345-6789)'
+        pattern: /^[0-9]-[0-9]{4}-[0-9]{3}$/,
+        errorMessage: 'El CID debe tener el formato X-XXXX-XXX (ej: 1-2345-678)'
     },
-    nombreCompleto: {
+    primerNombre: {
         required: true,
         minLength: 2,
-        maxLength: 100,
+        maxLength: 50,
         pattern: /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/,
-        errorMessage: 'El nombre debe contener solo letras y tener entre 2 y 100 caracteres'
+        errorMessage: 'El primer nombre debe contener solo letras y tener entre 2 y 50 caracteres'
+    },
+    primerApellido: {
+        required: true,
+        minLength: 2,
+        maxLength: 50,
+        pattern: /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/,
+        errorMessage: 'El primer apellido debe contener solo letras y tener entre 2 y 50 caracteres'
     },
     fechaNacimiento: {
         required: true,
@@ -322,14 +329,14 @@ document.addEventListener('DOMContentLoaded', () => {
 document.getElementById('cidParticipante').addEventListener('input', (e) => {
     let value = e.target.value.replace(/[^0-9]/g, '');
     
-    // Formatear como X-XXXX-XXXX
+    // Formatear como X-XXXX-XXX
     if (value.length > 0) {
         if (value.length <= 1) {
             value = value;
         } else if (value.length <= 5) {
             value = value.slice(0, 1) + '-' + value.slice(1);
         } else {
-            value = value.slice(0, 1) + '-' + value.slice(1, 5) + '-' + value.slice(5, 9);
+            value = value.slice(0, 1) + '-' + value.slice(1, 5) + '-' + value.slice(5, 8);
         }
     }
     
@@ -348,8 +355,21 @@ document.getElementById('celular').addEventListener('input', (e) => {
     e.target.value = value;
 });
 
-// Función para formatear nombre mientras se escribe
-document.getElementById('nombreCompleto').addEventListener('input', (e) => {
+// Función para formatear primer nombre mientras se escribe
+document.getElementById('primerNombre').addEventListener('input', (e) => {
+    // Capitalizar primera letra de cada palabra
+    const words = e.target.value.split(' ');
+    const capitalizedWords = words.map(word => {
+        if (word.length > 0) {
+            return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+        }
+        return word;
+    });
+    e.target.value = capitalizedWords.join(' ');
+});
+
+// Función para formatear primer apellido mientras se escribe
+document.getElementById('primerApellido').addEventListener('input', (e) => {
     // Capitalizar primera letra de cada palabra
     const words = e.target.value.split(' ');
     const capitalizedWords = words.map(word => {

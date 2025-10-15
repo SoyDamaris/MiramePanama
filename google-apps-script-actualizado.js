@@ -10,7 +10,7 @@ function doPost(e) {
     const data = JSON.parse(e.postData.contents);
     
     // Validar que los datos requeridos estén presentes
-    const requiredFields = ['cidParticipante', 'nombreCompleto', 'fechaNacimiento', 'provincia', 'distrito', 'corregimiento', 'celular', 'email'];
+    const requiredFields = ['cidParticipante', 'primerNombre', 'primerApellido', 'fechaNacimiento', 'provincia', 'distrito', 'corregimiento', 'celular', 'email'];
     const missingFields = requiredFields.filter(field => !data[field] || data[field].trim() === '');
     
     if (missingFields.length > 0) {
@@ -29,7 +29,8 @@ function doPost(e) {
     if (sheet.getLastRow() === 0) {
       const headers = [
         'CID-Participante',
-        'Nombre Completo',
+        'Primer Nombre',
+        'Primer Apellido',
         'Fecha de Nacimiento',
         'Provincia',
         'Distrito',
@@ -57,7 +58,8 @@ function doPost(e) {
     
     const rowData = [
       data.cidParticipante,
-      data.nombreCompleto,
+      data.primerNombre,
+      data.primerApellido,
       data.fechaNacimiento,
       data.provincia,
       data.distrito,
@@ -131,7 +133,8 @@ function createBackup(data, timestamp) {
       // Agregar encabezados
       const headers = [
         'CID-Participante',
-        'Nombre Completo',
+        'Primer Nombre',
+        'Primer Apellido',
         'Fecha de Nacimiento',
         'Provincia',
         'Distrito',
@@ -153,7 +156,8 @@ function createBackup(data, timestamp) {
     // Agregar datos de backup
     const backupData = [
       data.cidParticipante,
-      data.nombreCompleto,
+      data.primerNombre,
+      data.primerApellido,
       data.fechaNacimiento,
       data.provincia,
       data.distrito,
@@ -231,7 +235,7 @@ function getFormStats() {
     
     // Contar registros por período
     for (let i = 2; i <= lastRow; i++) {
-      const timestamp = sheet.getRange(i, 9).getValue(); // Columna I (timestamp)
+      const timestamp = sheet.getRange(i, 10).getValue(); // Columna J (timestamp)
       
       if (timestamp >= startOfDay) registrosHoy++;
       if (timestamp >= startOfWeek) registrosEstaSemana++;
@@ -287,8 +291,9 @@ function exportToCSV() {
 function testConnection() {
   try {
     const testData = {
-      cidParticipante: '1-2345-6789',
-      nombreCompleto: 'Prueba de Conexión',
+      cidParticipante: '1-2345-678',
+      primerNombre: 'Prueba',
+      primerApellido: 'Conexión',
       fechaNacimiento: '1990-01-01',
       provincia: 'Panamá',
       distrito: 'San Miguelito',

@@ -1,5 +1,5 @@
 // Configuración de Google Sheets
-const GOOGLE_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbyxOQCANrTh3lhuuIfkjl075GROoRe7A-9axWuJVWZ_0w07a1ycTjl4qzAD90BYl8jdTA/exec';
+const GOOGLE_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbymrWa2qsJcZ3wP3Uura1OKmSF6uNXorAZJShXV6HE_wq31p-U7E_RPueGaE2SVc4EeTw/exec';
 
 // Esperar a que el DOM esté cargado
 document.addEventListener('DOMContentLoaded', function() {
@@ -20,14 +20,20 @@ document.addEventListener('DOMContentLoaded', function() {
     const validations = {
         cidParticipante: {
             required: true,
-            pattern: /^[0-9]-[0-9]{4}-[0-9]{4}$/,
-            errorMessage: 'El CID debe tener el formato X-XXXX-XXXX (ej: 1-2345-6789)'
+            pattern: /^[0-9]-[0-9]{4}-[0-9]{3}$/,
+            errorMessage: 'El CID debe tener el formato X-XXXX-XXX (ej: 1-2345-678)'
         },
-        nombreCompleto: {
+        primerNombre: {
             required: true,
             minLength: 2,
-            maxLength: 100,
-            errorMessage: 'El nombre debe tener entre 2 y 100 caracteres'
+            maxLength: 50,
+            errorMessage: 'El primer nombre debe tener entre 2 y 50 caracteres'
+        },
+        primerApellido: {
+            required: true,
+            minLength: 2,
+            maxLength: 50,
+            errorMessage: 'El primer apellido debe tener entre 2 y 50 caracteres'
         },
         fechaNacimiento: {
             required: true,
@@ -263,7 +269,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 } else if (value.length <= 5) {
                     value = value.slice(0, 1) + '-' + value.slice(1);
                 } else {
-                    value = value.slice(0, 1) + '-' + value.slice(1, 5) + '-' + value.slice(5, 9);
+                    value = value.slice(0, 1) + '-' + value.slice(1, 5) + '-' + value.slice(5, 8);
                 }
             }
             
@@ -285,10 +291,25 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Capitalización automática para nombre
-    const nombreInput = document.getElementById('nombreCompleto');
-    if (nombreInput) {
-        nombreInput.addEventListener('input', (e) => {
+    // Capitalización automática para primer nombre
+    const primerNombreInput = document.getElementById('primerNombre');
+    if (primerNombreInput) {
+        primerNombreInput.addEventListener('input', (e) => {
+            const words = e.target.value.split(' ');
+            const capitalizedWords = words.map(word => {
+                if (word.length > 0) {
+                    return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+                }
+                return word;
+            });
+            e.target.value = capitalizedWords.join(' ');
+        });
+    }
+
+    // Capitalización automática para primer apellido
+    const primerApellidoInput = document.getElementById('primerApellido');
+    if (primerApellidoInput) {
+        primerApellidoInput.addEventListener('input', (e) => {
             const words = e.target.value.split(' ');
             const capitalizedWords = words.map(word => {
                 if (word.length > 0) {

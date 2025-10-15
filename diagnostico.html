@@ -105,7 +105,7 @@
             
             // Verificar campos
             const campos = [
-                'cidParticipante', 'nombreCompleto', 'fechaNacimiento', 
+                'cidParticipante', 'primerNombre', 'primerApellido', 'fechaNacimiento', 
                 'provincia', 'distrito', 'corregimiento', 'celular', 'email'
             ];
             
@@ -147,12 +147,13 @@
         async function probarGoogleSheets() {
             addLog('📊 Probando conexión con Google Sheets...');
             
-            const GOOGLE_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbyxOQCANrTh3lhuuIfkjl075GROoRe7A-9axWuJVWZ_0w07a1ycTjl4qzAD90BYl8jdTA/exec';
+            const GOOGLE_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbymrWa2qsJcZ3wP3Uura1OKmSF6uNXorAZJShXV6HE_wq31p-U7E_RPueGaE2SVc4EeTw/exec';
             
             try {
                 const datosPrueba = {
-                    cidParticipante: '1-2345-6789',
-                    nombreCompleto: 'Prueba Diagnóstico',
+                    cidParticipante: '1-2345-678',
+                    primerNombre: 'Prueba',
+                    primerApellido: 'Diagnóstico',
                     fechaNacimiento: '1990-01-01',
                     provincia: 'Panamá',
                     distrito: 'San Miguelito',

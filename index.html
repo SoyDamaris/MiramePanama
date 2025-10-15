@@ -27,19 +27,30 @@
                 <div class="form-group">
                     <label for="cidParticipante" class="form-label">
                         <i class="fas fa-id-card"></i>
-                        CID-Participante (FORMATO X-Xxxx-xxxx) *
+                        CID-Participante (FORMATO X-XXXX-XXX) *
                     </label>
-                    <input type="text" id="cidParticipante" name="cidParticipante" class="form-input" placeholder="Ej: 1-2345-6789" required>
+                    <input type="text" id="cidParticipante" name="cidParticipante" class="form-input" placeholder="Ej: 1-2345-678" required>
                     <span class="error-message" id="cidParticipante-error"></span>
                 </div>
 
-                <div class="form-group">
-                    <label for="nombreCompleto" class="form-label">
-                        <i class="fas fa-user"></i>
-                        Nombre Completo *
-                    </label>
-                    <input type="text" id="nombreCompleto" name="nombreCompleto" class="form-input" required>
-                    <span class="error-message" id="nombreCompleto-error"></span>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="primerNombre" class="form-label">
+                            <i class="fas fa-user"></i>
+                            Primer Nombre *
+                        </label>
+                        <input type="text" id="primerNombre" name="primerNombre" class="form-input" required>
+                        <span class="error-message" id="primerNombre-error"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="primerApellido" class="form-label">
+                            <i class="fas fa-user"></i>
+                            Primer Apellido *
+                        </label>
+                        <input type="text" id="primerApellido" name="primerApellido" class="form-input" required>
+                        <span class="error-message" id="primerApellido-error"></span>
+                    </div>
                 </div>
 
                 <div class="form-group">
